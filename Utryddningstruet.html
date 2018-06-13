@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Utryddningstruet</title>
+    <link rel="stylesheet" href="foundation-float.min.css">
+    <style>
+
+        header {
+            position: relative;
+            left: 0;
+            top: 0;
+            width: 100%;
+            color: white;
+            text-align: center;
+            background-color: #393A3A;
+            padding-bottom: 10px;
+        }
+
+        main img {
+            width: 100%;
+            max-width: 100px;
+        }
+
+        main {
+            font-size: 20px;
+        }
+
+        .footer {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            background-color: #0c4d78;
+            color: white;
+            text-align: center;
+            padding: 5px;
+        }
+
+        #knapper button {
+            font-size: 20px;
+            background-color: #0C4D78;
+            color: white;
+            padding: 12px;
+            width: 200px;
+        }
+
+        #knapperMain button {
+            left: 10px;
+            margin: 15px;
+            font-size: 20px;
+            background-color: red;
+            color: white;
+            padding: 12px;
+            width: 200px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+    <h1>Liste over utryddningstruete dyr</h1>
+
+    <div id="knapper">
+        <button id="Quiz">Quiz</button>
+        <button id="Dyrehagen">Dyrehagen</button>
+        <button id="Safari">Safari</button>
+        <button id="Truet">Utryddingstruet</button>
+        <button id="Hjem">Hjem</button>
+    </div>
+    </header>
+
+    <div id="knapperMain">
+    <button id="btnKritisk">Kritisk truet</button>
+    <button id="btnSterkt">Sterkt truet</button>
+    <button id="btnSårbar">Sårbar</button>
+    <button id="btnSorterS">Populasjon størst</button>
+    <button id="btnSorterM">Populasjon minst</button>
+    </div>
+
+    <main id="main"></main>
+
+    <div class="footer">All fakta er hentet fra WWF sine offisielle sider henvist her https://www.wwf.no/</div>
+
+    <script>
+
+        var main = document.getElementById("main");
+        var btnKritisk = document.getElementById("btnKritisk");
+
+
+        var dyrene = [
+
+            {
+                id: "dyr1",
+                navn: "Fjellgorilla",
+                vitenskapelignavn: "Gorilla beringei beringei",
+                bilde: "gorilla.jpg",
+                populasjon: 1004,
+                lokasjon: "Virungafjellene i DRC Kongo, Rwanda og Uganda",
+                tilstand: "kritisk truet",
+                audio: "gorilla.mp3"
+
+            },
+
+            {
+                id: "dyr2",
+                navn: "Isbjørn",
+                vitenskapelignavn: "Ursus maritimus",
+                bilde: "isbjørn.jpg",
+                populasjon: 25000,
+                lokasjon: "Arktis",
+                tilstand: "sårbar",
+                audio: "isbjørn.mp3"
+            },
+
+            {
+                id: "dyr3",
+                navn: "Afrikansk elefant",
+                vitenskapelignavn: "Loxodonta africana",
+                bilde: "elefant.jpg",
+                populasjon: 415000,
+                lokasjon: "Vest- og sentral Afrika",
+                tilstand: "sårbar",
+                audio: "elefant.mp3"
+            },
+
+            {
+                id: "dyr4",
+                navn: "Panda",
+                vitenskapelignavn: "Ailuropoda melanoleuca",
+                bilde: "panda.jpg",
+                populasjon: 1864,
+                lokasjon: "Sørvest-Kina",
+                tilstand: "sårbar",
+                audio: "panda.mp3"
+            },
+
+            {
+                id: "dyr5",
+                navn: "Brunbjørn",
+                vitenskapelignavn: "Ursus arctos",
+                bilde: "bjørn.jpg",
+                populasjon: 125,
+                lokasjon: "Nord-Amerika, Nord-Europa og i Asia",
+                tilstand: "kritisk truet",
+                audio: "bjørn.mp3"
+            },
+
+            {
+                id: "dyr6",
+                navn: "Tiger",
+                vitenskapelignavn: "Panthera tigris",
+                bilde: "tiger.jpg",
+                populasjon: 3890,
+                lokasjon: "Tropisk regnskog, savanner, temperert skog og steinete områder",
+                tilstand: "sterkt truet",
+                audio: "tiger.mp3"
+            },
+
+        ];
+
+        function visDyrene() {
+            for(var dyr of dyrene) {
+                main.innerHTML += `<li id="${dyr.id}"><img src="bilder/${dyr.bilde}">
+                                    <h2 style="font-size: 20px">${dyr.navn} er i denne grad utryddningstruet: <p style="color: red">${dyr.tilstand}</p></h2>
+                                    </li>`;
+
+            }
+        }
+
+        visDyrene();
+
+        //let skrekkfilmer = filmer.filter( film => film.sjanger === "skrekk" );
+
+        function filtrerDyr() {
+            let truetedyr = dyrene.filter( dyr => dyr.tilstand === "kritisk truet");
+
+        }
+
+        filtrerDyr();
+
+    </script>
+
+</body>
+</html>

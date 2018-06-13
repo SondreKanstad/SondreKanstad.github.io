@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dyrehagen</title>
+    <link rel="stylesheet" href="foundation-float.min.css">
+    <style>
+
+        header {
+            position: relative;
+            left: 0;
+            top: 0;
+            width: 100%;
+            color: white;
+            text-align: center;
+            background-color: #393A3A;
+            padding-bottom: 10px;
+        }
+
+        main {
+            padding: 25px;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            background-color: papayawhip;
+        }
+
+        main img {
+            width: 100%;
+        }
+
+        main article {
+            margin: 5px;
+            position: relative;
+        }
+
+        .info {
+            position: absolute;
+            top: 0;
+            margin: 5px;
+            padding: 5px;
+            background-color: azure;
+
+        }
+
+        .footer {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            background-color: #0c4d78;
+            color: white;
+            text-align: center;
+            padding: 5px;
+        }
+
+        #knapper button {
+            font-size: 20px;
+            background-color: #0C4D78;
+            color: white;
+            padding: 12px;
+            width: 200px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+
+        <h1>Trykk på bildene for mer informasjon og dyrelyd</h1>
+
+        <div id="knapper">
+        <button id="btnQuiz">Quiz</button>
+        <button id="btnDyrehage">Dyrehage</button>
+        <button id="btnSafari">Safari</button>
+        <button id="btnTruet">Truet</button>
+        <button id="btnHjem">Hjem</button>
+        </div>
+    </header>
+
+    <main id="main">
+
+    </main>
+
+    <div class="footer">All fakta er hentet fra WWF sine offisielle sider henvist her https://www.wwf.no/</div>
+
+    <audio src="lyder/gorilla.mp3"></audio>
+    <audio src="lyder/elefant.mp3"></audio>
+    <audio src="lyder/tiger.mp3"></audio>
+    <audio src="lyder/panda.mp3"></audio>
+    <audio src="lyder/bjørn.mp3"></audio>
+    <audio src="lyder/isbjørn.mp3"></audio>
+
+    <script>
+
+        var main = document.getElementById("main");
+        var info = document.getElementById("info");
+        let audio = new Audio();
+
+
+        var dyrene = [
+
+        {
+            id: "dyr1",
+            navn: "Fjellgorilla",
+            vitenskapelignavn: "Gorilla beringei beringei",
+            bilde: "gorilla.jpg",
+            populasjon: 1004,
+            lokasjon: "Virungafjellene i DRC Kongo, Rwanda og Uganda",
+            tilstand: "kritisk truet",
+            audio: "gorilla.mp3"
+
+
+
+        },
+
+        {
+            id: "dyr2",
+            navn: "Isbjørn",
+            vitenskapelignavn: "Ursus maritimus",
+            bilde: "isbjørn.jpg",
+            populasjon: 25000,
+            lokasjon: "Arktis",
+            tilstand: "sårbar",
+            audio: "isbjørn.mp3"
+        },
+
+        {
+            id: "dyr3",
+            navn: "Afrikansk elefant",
+            vitenskapelignavn: "Loxodonta africana",
+            bilde: "elefant.jpg",
+            populasjon: 415000,
+            lokasjon: "Vest- og sentral Afrika",
+            tilstand: "sårbar",
+            audio: "elefant.mp3"
+        },
+
+        {
+            id: "dyr4",
+            navn: "Panda",
+            vitenskapelignavn: "Ailuropoda melanoleuca",
+            bilde: "panda.jpg",
+            populasjon: 1864,
+            lokasjon: "Sørvest-Kina",
+            tilstand: "sårbar",
+            audio: "panda.mp3"
+        },
+
+        {
+            id: "dyr5",
+            navn: "Brunbjørn",
+            vitenskapelignavn: "Ursus arctos",
+            bilde: "bjørn.jpg",
+            populasjon: 125,
+            lokasjon: "Nord-Amerika, Nord-Europa og i Asia",
+            tilstand: "kritisk truet",
+            audio: "bjørn.mp3"
+        },
+
+        {
+            id: "dyr6",
+            navn: "Tiger",
+            vitenskapelignavn: "Panthera tigris",
+            bilde: "tiger.jpg",
+            populasjon: 3890,
+            lokasjon: "Tropisk regnskog, savanner, temperert skog og steinete områder",
+            tilstand: "sterkt truet",
+            audio: "tiger.mp3"
+        },
+
+        ];
+
+        function visDyrene() {
+            for(var dyr of dyrene) {
+                main.innerHTML += `<article id="${dyr.id}" onclick="visMer('${dyr.id}')"><img src="bilder/${dyr.bilde}">
+                                    <p class="info" style="display:none">Dette dyret er mest kjent som ${dyr.navn}, men det vitenskapelige navnet er ${dyr.vitenskapelignavn}. I dag er populasjonen estimert til å være rundt ${dyr.populasjon}. Derfor ser vi at dyrearten er ${dyr.tilstand} for å bli utryddet. Denne dyrearten befinner seg i ${dyr.lokasjon}.</p>
+                                    <h2>${dyr.navn}</h2>
+                                    </article>`;
+            }
+        }
+
+
+        visDyrene();
+
+
+        function visMer(dyreid) {
+            let info = document.querySelector(`#${dyreid} .info`);
+
+            if(info.style.display === "none") {
+                info.style.display = "block";
+            } else {
+                info.style.display = "none";
+            }
+
+        }
+
+
+    </script>
+
+</body>
+</html>
