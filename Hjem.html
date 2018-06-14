@@ -42,10 +42,14 @@
         }
 
         body {
-           background: url("bilder/bakgrunn.jpg") center top fixed no-repeat papayawhip;
-            background-size: 815px 400px;
+            background-color: papayawhip;
+        }
 
-
+        .sentrer {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 64%;
         }
 
         h1 {
@@ -65,17 +69,24 @@
             <a class="button" href="Hjem.html">Hjem</a>
             <a class="button" href="Dyrehagen.html">Dyrehagen</a>
             <a class="button" href="Quiz.html">Quiz</a>
-            <a class="button" href="Utryddningstruet.html">Utrydningstruet</a>
+            <a class="button" href="Utrydningstruet.html">Utrydningstruet</a>
         </nav>
 </header>
 
 <body>
 
+    <img src="bilder/bakgrunn.jpg" value="PLAY"  onclick="play()" class="sentrer">
+    <audio id="audio" src="lyder/elefant.mp3" ></audio>
+
 
     <div class="footer">All fakta er hentet fra WWF sine offisielle sider henvist her https://www.wwf.no/</div>
 
-
-
+    <script>
+        function play(){
+            var audio = document.getElementById("audio");
+            audio.play();
+        }
+    </script>
 
 </body>
 </html>

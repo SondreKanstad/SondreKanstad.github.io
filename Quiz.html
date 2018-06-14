@@ -16,6 +16,10 @@
             font-family: "Comic Sans MS";
         }
 
+        #res {
+            font-size: 32px;
+        }
+
         header {
             position: relative;
             left: 0;
@@ -99,7 +103,7 @@
         <a class="button" href="Hjem.html">Hjem</a>
         <a class="button" href="Dyrehagen.html">Dyrehagen</a>
         <a class="button" href="Quiz.html">Quiz</a>
-        <a class="button" href="Utryddningstruet.html">Utrydningstruet</a>
+        <a class="button" href="Utrydningstruet.html">Utrydningstruet</a>
     </nav>
 </header>
 
@@ -112,10 +116,9 @@
     </section>
 
     <section id="res">
-        <div>Antall gjetninger: <span id="spanAntallGjetninger">0</span></div>
+        <div>Antall forsøk: <span id="spanAntallGjetninger">0</span></div>
     </section>
 
-    <h1>Highscore: <span id="hs"></span></h1>
 
 </main>
 
@@ -126,68 +129,76 @@
     const spanAntallGjetninger = document.getElementById("spanAntallGjetninger");
     const lydFeil = document.getElementById("lydFeil");
     const lydRiktig = document.getElementById("lydRiktig");
-    const hs = document.getElementById("hs");
-    // Highscore er egentlig her minst mulig
-    // Setter den til 1000 først. Den blir garantert slått i første runde
-    let highscore = 1000;
-    // Hvis det er lagret en highscore i localStorage henter vi den ut.
-    if(localStorage.highscore) {
-        highscore = localStorage.highscore;
-    }
-    hs.innerHTML = highscore;
+
+
+
     // Bruker et array med keys som vi finner igjen i mappen med dyrene
     // Primært for å kunne spille en tilfeldig lyd på en grei måte
     let keys = ["bjørn", "elefant", "gorilla", "isbjørn", "panda", "tiger"];
-    // Hvis det legges til flere instrumenter, økes antallinstrumenter
+
+    // Hvis det legges til flere lyder, økes antalldyrene
     let antalldyrene = keys.length;
+
     let lyd = new Audio();
+
     let riktigdyr;
+
     let dyr;
+
     let antallgjetninger = 0;
+
     let skalfinnenylyd = true; // Hvis det er gjettet riktig og første gang
-    let dyrene = new Map();
-    dyrene.set("bjørn", {
+
+    let dyrene = new Map(); //hva betyr det
+
+    dyrene.set("bjørn", { //forklar hva set er
         navn: "Bjørn",
         lyd: "bjørn.mp3",
         bilde: "bjørn.jpg",
-        key: "bjørn"
+        key: "bjørn"      //forklar hva key er
     });
+
     dyrene.set("elefant", {
         navn: "Elefant",
         lyd: "elefant.mp3",
         bilde: "elefant.jpg",
         key: "elefant"
     });
+
     dyrene.set("gorilla", {
         navn: "Gorilla",
         lyd: "gorilla.mp3",
         bilde: "gorilla.jpg",
         key: "gorilla"
     });
+
     dyrene.set("isbjørn", {
         navn: "Isbjørn",
         lyd: "isbjørn.mp3",
         bilde: "isbjørn.jpg",
         key: "isbjørn"
     });
+
     dyrene.set("panda", {
         navn: "Panda",
         lyd: "panda.mp3",
         bilde: "panda.jpg",
         key: "panda"
     });
+
     dyrene.set("tiger", {
         navn: "Tiger",
         lyd: "tiger.mp3",
         bilde: "tiger.jpg",
         key: "tiger"
     });
+
     function spillTilfeldigLyd() {
         if(skalfinnenylyd) {
             //Finn tilfeldig lyd
             let random = Math.floor(Math.random() * keys.length);
-            let key = keys[random];
-            dyr = dyrene.get(key);
+            let key = keys[random]; //key funksjon
+            dyr = dyrene.get(key); //get funksjon
             riktigdyr = dyr;
             skalfinnenylyd = false;
         } else {
@@ -204,29 +215,25 @@
         antallgjetninger++;
         // Du har gjettet riktig
         if(key === dyr.key) {
-            // Sletter instrumentet
+            // Sletter dyret
             dyrene.delete(key);
+
             // Slette key i arrayet
             let indeks = keys.indexOf(key);
             keys.splice(indeks, 1);
+
             // Slette elementet fra DOM
             let elem = document.getElementById(`${key}`);
             zoo.removeChild(elem);
             lydRiktig.play();
+
             // Sjekker om alle er gjettet
             if(keys.length === 0) {
                 antallfeil = antallgjetninger - antalldyrene;
-                if(antallfeil === highscore) {
-                    alert("Det er tangering av gammel highscore");
-                }
-                if(antallfeil < highscore) {
-                    alert("Det er ny highscore!");
-                    localStorage.highscore = antallfeil;
-                    hs.innerHTML = antallfeil;
-                }
+
                 zoo.style.padding = "30px";
-                zoo.innerHTML = `
-                        <h3>Du gjettet bare ${antallfeil} feil!</h3>
+                zoo.innerHTML += `
+                        <h3>Du hadde bare ${antallfeil} feil!</h3>
                         <button class="button" onclick="restart()">START PÅ NYTT</button>
                     `;
             }
@@ -239,7 +246,7 @@
     }
     function init() {
         for(let [key, dyr] of dyrene) {
-            zoo.innerHTML += `
+            zoo.innerHTML = `
                     <article id="${key}" onclick="gjett('${key}')">
                         <img src="bilder/${dyr.bilde}">
                         <p>${dyr.navn}</p>
