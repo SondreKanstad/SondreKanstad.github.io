@@ -8,6 +8,14 @@
     <link rel="stylesheet" href="foundation-float.min.css">
     <style>
 
+        * {
+            font-family: "Comic Sans MS";
+        }
+
+        h1 {
+            font-family: "Comic Sans MS";
+        }
+
         header {
             position: relative;
             left: 0;
@@ -33,11 +41,12 @@
 
         main img {
             width: 100%;
-            max-width: 250px;
+            max-width: 230px;
         }
 
-        p {
-            font-size: 22px;
+        h2 {
+            font-size: 20px;
+            font-family: "Comic Sans MS";
         }
         #zoo {
             display: flex;
@@ -49,12 +58,13 @@
             border: 2px solid gainsboro;
             cursor: pointer;
             align-items: center;
+            font-family: "Comic Sans MS";
         }
         #zoo > article:hover {
             border-color: #0c4d78;
         }
 
-        #knapper button {
+        #knapper a {
             font-size: 20px;
             background-color: #0C4D78;
             color: white;
@@ -85,19 +95,18 @@
 <header>
     <h1>Hvilket dyr lager lyden?</h1>
 
-    <div id="knapper">
-        <button id="btnQuiz">Quiz</button>
-        <button id="btnDyrehage">Dyrehage</button>
-        <button id="btnSafari">Safari</button>
-        <button id="btnTruet">Truet</button>
-        <button id="btnHjem">Hjem</button>
-    </div>
+    <nav id="knapper">
+        <a class="button" href="Hjem.html">Hjem</a>
+        <a class="button" href="Dyrehagen.html">Dyrehagen</a>
+        <a class="button" href="Quiz.html">Quiz</a>
+        <a class="button" href="Utryddningstruet.html">Utrydningstruet</a>
+    </nav>
 </header>
 
 <main>
 
+    <h2>Klikk på det dyret du tror lager lyden!</h2>
     <button class="button" onclick="spillTilfeldigLyd()">Spill av lyden</button>
-    <p>Klikk på det dyret du tror lager lyden!</p>
     <section id="zoo">
 
     </section>
@@ -126,7 +135,7 @@
         highscore = localStorage.highscore;
     }
     hs.innerHTML = highscore;
-    // Bruker et array med keys som vi finner igjen i mapen med instrumentene
+    // Bruker et array med keys som vi finner igjen i mappen med dyrene
     // Primært for å kunne spille en tilfeldig lyd på en grei måte
     let keys = ["bjørn", "elefant", "gorilla", "isbjørn", "panda", "tiger"];
     // Hvis det legges til flere instrumenter, økes antallinstrumenter

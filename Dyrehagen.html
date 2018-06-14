@@ -6,6 +6,25 @@
     <link rel="stylesheet" href="foundation-float.min.css">
     <style>
 
+        * {
+            font-family: "Comic Sans MS";
+        }
+
+        body {
+            background-color: papayawhip;
+        }
+
+        h1 {
+            font-family: "Comic Sans MS";
+        }
+
+        h2 {
+            font-family: "Comic Sans MS";
+            font-size: 20px;
+            text-align: center;
+            padding-top: 20px;
+        }
+
         header {
             position: relative;
             left: 0;
@@ -42,6 +61,12 @@
 
         }
 
+        .info2 {
+            text-align: center;
+            font-size: 20px;
+            font-family: "Comic Sans MS";
+        }
+
         .footer {
             position: fixed;
             left: 0;
@@ -53,7 +78,7 @@
             padding: 5px;
         }
 
-        #knapper button {
+        #knapper a {
             font-size: 20px;
             background-color: #0C4D78;
             color: white;
@@ -67,20 +92,23 @@
 
     <header>
 
-        <h1>Trykk på bildene for mer informasjon og dyrelyd</h1>
+        <h1>Den interaktive dyrehage</h1>
 
-        <div id="knapper">
-        <button id="btnQuiz">Quiz</button>
-        <button id="btnDyrehage">Dyrehage</button>
-        <button id="btnSafari">Safari</button>
-        <button id="btnTruet">Truet</button>
-        <button id="btnHjem">Hjem</button>
-        </div>
+        <nav id="knapper">
+            <a class="button" href="Hjem.html">Hjem</a>
+            <a class="button" href="Dyrehagen.html">Dyrehagen</a>
+            <a class="button" href="Quiz.html">Quiz</a>
+            <a class="button" href="Utryddningstruet.html">Utrydningstruet</a>
+        </nav>
     </header>
+
+    <h2>Klikk på bildet av dyrene for mer informasjon</h2>
+
 
     <main id="main">
 
     </main>
+
 
     <div class="footer">All fakta er hentet fra WWF sine offisielle sider henvist her https://www.wwf.no/</div>
 
@@ -95,7 +123,6 @@
 
         var main = document.getElementById("main");
         var info = document.getElementById("info");
-        let audio = new Audio();
 
 
         var dyrene = [
@@ -108,9 +135,6 @@
             populasjon: 1004,
             lokasjon: "Virungafjellene i DRC Kongo, Rwanda og Uganda",
             tilstand: "kritisk truet",
-            audio: "gorilla.mp3"
-
-
 
         },
 
@@ -122,7 +146,6 @@
             populasjon: 25000,
             lokasjon: "Arktis",
             tilstand: "sårbar",
-            audio: "isbjørn.mp3"
         },
 
         {
@@ -133,7 +156,6 @@
             populasjon: 415000,
             lokasjon: "Vest- og sentral Afrika",
             tilstand: "sårbar",
-            audio: "elefant.mp3"
         },
 
         {
@@ -144,7 +166,6 @@
             populasjon: 1864,
             lokasjon: "Sørvest-Kina",
             tilstand: "sårbar",
-            audio: "panda.mp3"
         },
 
         {
@@ -155,7 +176,6 @@
             populasjon: 125,
             lokasjon: "Nord-Amerika, Nord-Europa og i Asia",
             tilstand: "kritisk truet",
-            audio: "bjørn.mp3"
         },
 
         {
@@ -166,31 +186,40 @@
             populasjon: 3890,
             lokasjon: "Tropisk regnskog, savanner, temperert skog og steinete områder",
             tilstand: "sterkt truet",
-            audio: "tiger.mp3"
         },
 
         ];
 
         function visDyrene() {
             for(var dyr of dyrene) {
-                main.innerHTML += `<article id="${dyr.id}" onclick="visMer('${dyr.id}')"><img src="bilder/${dyr.bilde}">
-                                    <p class="info" style="display:none">Dette dyret er mest kjent som ${dyr.navn}, men det vitenskapelige navnet er ${dyr.vitenskapelignavn}. I dag er populasjonen estimert til å være rundt ${dyr.populasjon}. Derfor ser vi at dyrearten er ${dyr.tilstand} for å bli utryddet. Denne dyrearten befinner seg i ${dyr.lokasjon}.</p>
-                                    <h2>${dyr.navn}</h2>
+                main.innerHTML += `<article id="${dyr.id}" onclick="visMer('${dyr.id}', '${dyr.navn}')"><img src="bilder/${dyr.bilde}">
+
+                                    <p class="info" style="display:none">Dette dyret er mest kjent som ${dyr.navn},
+                                    men det vitenskapelige navnet er ${dyr.vitenskapelignavn}. I dag er populasjonen estimert til å være rundt
+                                    ${dyr.populasjon}. Derfor ser vi at dyrearten er ${dyr.tilstand} for å bli utryddet. Denne dyrearten befinner seg i ${dyr.lokasjon}.</p>
+
+                                    <p class="info2" style="display: block">Hvilket dyr er dette?</p>
                                     </article>`;
             }
         }
 
-
         visDyrene();
 
 
-        function visMer(dyreid) {
-            let info = document.querySelector(`#${dyreid} .info`);
+        function visMer(dyreid, navn) {
+            let info = document.querySelector(`#${dyreid} .info`); //henter ide'en til article og endre styl på info
+            let info2 = document.querySelector(`#${dyreid} .info2`);
 
-            if(info.style.display === "none") {
+            if (info.style.display === "none") {
                 info.style.display = "block";
             } else {
                 info.style.display = "none";
+            }
+
+            if(info2.innerHTML === "Hvilket dyr er dette?") {
+                info2.innerHTML = `${navn}`;
+            } else {
+                info2.innerHTML = "Hvilket dyr er dette?";
             }
 
         }

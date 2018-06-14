@@ -6,6 +6,10 @@
     <link rel="stylesheet" href="foundation-float.min.css">
     <style>
 
+        * {
+            font-family: "Comic Sans MS";
+        }
+
         header {
             position: relative;
             left: 0;
@@ -17,13 +21,25 @@
             padding-bottom: 10px;
         }
 
-        main img {
-            width: 100%;
-            max-width: 100px;
+        h1 {
+            font-family: "Comic Sans MS";
         }
 
-        main {
+        h2 {
+            font-family: "Comic Sans MS";
             font-size: 20px;
+            text-align: center;
+            padding: 10px;
+        }
+
+        h3 {
+            font-family: "Comic Sans MS";
+            font-size: 15px;
+            text-align: center;
+        }
+
+        body {
+            background-color: papayawhip;
         }
 
         .footer {
@@ -37,7 +53,7 @@
             padding: 5px;
         }
 
-        #knapper button {
+        #knapper a {
             font-size: 20px;
             background-color: #0C4D78;
             color: white;
@@ -45,14 +61,42 @@
             width: 200px;
         }
 
-        #knapperMain button {
-            left: 10px;
-            margin: 15px;
+        .knapperMain a {
             font-size: 20px;
-            background-color: red;
-            color: white;
             padding: 12px;
             width: 200px;
+
+        }
+
+        nav {
+            text-align: center;
+        }
+
+        .knapperMain #btnKritiskTruet {
+            background-color: red;
+        }
+
+        .knapperMain #btnTruet {
+            background-color: orange;
+        }
+
+        .knapperMain #btnIkkeTruet {
+            background-color: green;
+        }
+
+        .knapperMain #btnvisAlle {
+             background-color: #0C4D78;
+        }
+
+        #zoo {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+        }
+
+        article {
+            padding: 10px;
+            margin-bottom: 15px;
+            width: 100%;
         }
 
     </style>
@@ -62,123 +106,134 @@
     <header>
     <h1>Liste over utryddningstruete dyr</h1>
 
-    <div id="knapper">
-        <button id="Quiz">Quiz</button>
-        <button id="Dyrehagen">Dyrehagen</button>
-        <button id="Safari">Safari</button>
-        <button id="Truet">Utryddingstruet</button>
-        <button id="Hjem">Hjem</button>
-    </div>
+        <nav id="knapper">
+            <a class="button" href="Hjem.html">Hjem</a>
+            <a class="button" href="Dyrehagen.html">Dyrehagen</a>
+            <a class="button" href="Quiz.html">Quiz</a>
+            <a class="button" href="Utryddningstruet.html">Utrydningstruet</a>
+        </nav>
     </header>
 
-    <div id="knapperMain">
-    <button id="btnKritisk">Kritisk truet</button>
-    <button id="btnSterkt">Sterkt truet</button>
-    <button id="btnSårbar">Sårbar</button>
-    <button id="btnSorterS">Populasjon størst</button>
-    <button id="btnSorterM">Populasjon minst</button>
-    </div>
+    <h2>Trykk på knappene for å se dyrene kategorisert</h2>
 
-    <main id="main"></main>
+    <nav class="knapperMain">
+        <a class="button" id="btnKritiskTruet">Kritisk truet</a>
+        <a class="button" id="btnTruet">Truet</a>
+        <a class="button" id="btnIkkeTruet">Ikke truet</a>
+        <a class="button" id="btnvisAlle">Vis Alle</a>
+    </nav>
+
+    <div id="zoo">
+
+        </div>
 
     <div class="footer">All fakta er hentet fra WWF sine offisielle sider henvist her https://www.wwf.no/</div>
 
     <script>
 
-        var main = document.getElementById("main");
-        var btnKritisk = document.getElementById("btnKritisk");
+        var btnKritiskTruet = document.getElementById("btnKritiskTruet");
+        var btnTruet = document.getElementById("btnTruet");
+        var btnIkkeTruet = document.getElementById("btnIkkeTruet");
+        var btnvisAlle = document.getElementById("btnvisAlle");
+        var zoo = document.getElementById("zoo");
+
 
 
         var dyrene = [
-
-            {
-                id: "dyr1",
-                navn: "Fjellgorilla",
-                vitenskapelignavn: "Gorilla beringei beringei",
-                bilde: "gorilla.jpg",
-                populasjon: 1004,
-                lokasjon: "Virungafjellene i DRC Kongo, Rwanda og Uganda",
-                tilstand: "kritisk truet",
-                audio: "gorilla.mp3"
-
-            },
-
-            {
-                id: "dyr2",
-                navn: "Isbjørn",
-                vitenskapelignavn: "Ursus maritimus",
-                bilde: "isbjørn.jpg",
-                populasjon: 25000,
-                lokasjon: "Arktis",
-                tilstand: "sårbar",
-                audio: "isbjørn.mp3"
-            },
-
-            {
-                id: "dyr3",
-                navn: "Afrikansk elefant",
-                vitenskapelignavn: "Loxodonta africana",
-                bilde: "elefant.jpg",
-                populasjon: 415000,
-                lokasjon: "Vest- og sentral Afrika",
-                tilstand: "sårbar",
-                audio: "elefant.mp3"
-            },
-
-            {
-                id: "dyr4",
-                navn: "Panda",
-                vitenskapelignavn: "Ailuropoda melanoleuca",
-                bilde: "panda.jpg",
-                populasjon: 1864,
-                lokasjon: "Sørvest-Kina",
-                tilstand: "sårbar",
-                audio: "panda.mp3"
-            },
-
-            {
-                id: "dyr5",
-                navn: "Brunbjørn",
-                vitenskapelignavn: "Ursus arctos",
-                bilde: "bjørn.jpg",
-                populasjon: 125,
-                lokasjon: "Nord-Amerika, Nord-Europa og i Asia",
-                tilstand: "kritisk truet",
-                audio: "bjørn.mp3"
-            },
-
-            {
-                id: "dyr6",
-                navn: "Tiger",
-                vitenskapelignavn: "Panthera tigris",
-                bilde: "tiger.jpg",
-                populasjon: 3890,
-                lokasjon: "Tropisk regnskog, savanner, temperert skog og steinete områder",
-                tilstand: "sterkt truet",
-                audio: "tiger.mp3"
-            },
-
+            {id: "dyr1", navn: "Spissneshorn", status: "Kritisk truet", bestand: 5000, bilde: "spissneshorn.jpg"},
+            {id: "dyr2", navn: "Blåhval", status: "Truet", bestand: 25000, bilde: "blåhval.jpg"},
+            {id: "dyr3", navn: "Fjellrev", status: "Ikke truet", bestand: 200000, bilde: "fjellrev.jpg"},
+            {id: "dyr4", navn: "Sjimpanse", status: "Truet", bestand: 299700, bilde: "sjimpanse.jpg"},
+            {id: "dyr5", navn: "Gråhval", status: "Ikke truet", bestand: 150, bilde: "gråhval.jpg"},
+            {id: "dyr6", navn: "Fjellgorilla", status: "Kritisk truet", bestand: 880, bilde: "gorilla.jpg"},
+            {id: "dyr7", navn: "Orangutang", status: "Kritisk truet", bestand: 104000, bilde: "orangutang.jpg"},
+            {id: "dyr8", navn: "Rød panda", status: "Truet", bestand: 10000, bilde: "rødpanda.jpg"},
+            {id: "dyr9", navn: "Gaffelbukk", status: "Ikke truet", bestand: 1000000, bilde: "gaffelbukk.jpg"},
+            {id: "dyr10", navn: "Californianise", status: "Kritisk truet", bestand: 30, bilde: "californianise.png"},
+            {id: "dyr11", navn: "Amerikansk alligator", status: "Ikke truet", bestand: 5000000, bilde: "alligator.jpg"},
+            {id: "dyr12", navn: "Tiger", status: "Truet", bestand: 3890, bilde: "tiger.jpg"}
         ];
 
-        function visDyrene() {
-            for(var dyr of dyrene) {
-                main.innerHTML += `<li id="${dyr.id}"><img src="bilder/${dyr.bilde}">
-                                    <h2 style="font-size: 20px">${dyr.navn} er i denne grad utryddningstruet: <p style="color: red">${dyr.tilstand}</p></h2>
-                                    </li>`;
 
+        function visDyrene(dyrene) {
+
+                for(let dyr of dyrene) {
+                    zoo.innerHTML += `
+                               <article id="${dyr.id}">
+                                    <img src="bilder/${dyr.bilde}" style="width:100%">
+                                    <p>${dyr.navn} <b>${dyr.status}</b></p>
+                                    <p>${dyr.bestand} individer</p>
+                              </article>
+                        `;
+                }
             }
-        }
 
-        visDyrene();
+            visDyrene(dyrene);
 
-        //let skrekkfilmer = filmer.filter( film => film.sjanger === "skrekk" );
 
-        function filtrerDyr() {
-            let truetedyr = dyrene.filter( dyr => dyr.tilstand === "kritisk truet");
 
-        }
+            function visKritiskTruet() {
 
-        filtrerDyr();
+                zoo.innerHTML = "";
+
+                let kritisktruet = dyrene.filter(dyr => dyr.status === "Kritisk truet");
+
+                console.log(kritisktruet);
+
+                visDyrene(kritisktruet);
+
+                if (visKritiskTruet = true) {
+                    zoo.style.color = "red";
+                }
+            }
+
+            function visTruet() {
+
+                    zoo.innerHTML = "";
+
+                    let truet = dyrene.filter( dyr => dyr.status === "Truet" );
+
+                    console.log(truet);
+
+                    visDyrene(truet);
+
+                if(visTruet = true) {
+                    zoo.style.color = "orange";
+                    }
+                }
+
+
+            function visIkkeTruet() {
+
+                    zoo.innerHTML = "";
+
+                    let ikketruet = dyrene.filter( dyr => dyr.status === "Ikke truet" );
+
+                    console.log(ikketruet);
+
+                    visDyrene(ikketruet);
+
+                    if(visIkkeTruet = true) {
+                         zoo.style.color = "green";
+                     }
+                }
+
+            function visAlle() {
+
+                    zoo.innerHTML = "";
+
+                    visDyrene(dyrene);
+
+                     if(visAlle = true) {
+                          zoo.style.color = "black";
+                      }
+                }
+
+
+                btnKritiskTruet.onclick = visKritiskTruet;
+                btnTruet.onclick = visTruet;
+                btnIkkeTruet.onclick = visIkkeTruet;
+                btnvisAlle.onclick = visAlle;
 
     </script>
 
