@@ -98,7 +98,7 @@
             <a class="button" href="Hjem.html">Hjem</a>
             <a class="button" href="Dyrehagen.html">Dyrehagen</a>
             <a class="button" href="Quiz.html">Quiz</a>
-            <a class="button" href="Utryddningstruet.html">Utrydningstruet</a>
+            <a class="button" href="Utrydningstruet.html">Utrydningstruet</a>
         </nav>
     </header>
 
@@ -111,13 +111,6 @@
 
 
     <div class="footer">All fakta er hentet fra WWF sine offisielle sider henvist her https://www.wwf.no/</div>
-
-    <audio src="lyder/gorilla.mp3"></audio>
-    <audio src="lyder/elefant.mp3"></audio>
-    <audio src="lyder/tiger.mp3"></audio>
-    <audio src="lyder/panda.mp3"></audio>
-    <audio src="lyder/bjørn.mp3"></audio>
-    <audio src="lyder/isbjørn.mp3"></audio>
 
     <script>
 
@@ -134,7 +127,7 @@
             bilde: "gorilla.jpg",
             populasjon: 1004,
             lokasjon: "Virungafjellene i DRC Kongo, Rwanda og Uganda",
-            tilstand: "kritisk truet",
+            tilstand: "kritisk truet"
 
         },
 
@@ -145,7 +138,7 @@
             bilde: "isbjørn.jpg",
             populasjon: 25000,
             lokasjon: "Arktis",
-            tilstand: "sårbar",
+            tilstand: "sårbar"
         },
 
         {
@@ -155,7 +148,7 @@
             bilde: "elefant.jpg",
             populasjon: 415000,
             lokasjon: "Vest- og sentral Afrika",
-            tilstand: "sårbar",
+            tilstand: "sårbar"
         },
 
         {
@@ -165,7 +158,7 @@
             bilde: "panda.jpg",
             populasjon: 1864,
             lokasjon: "Sørvest-Kina",
-            tilstand: "sårbar",
+            tilstand: "sårbar"
         },
 
         {
@@ -175,7 +168,7 @@
             bilde: "bjørn.jpg",
             populasjon: 125,
             lokasjon: "Nord-Amerika, Nord-Europa og i Asia",
-            tilstand: "kritisk truet",
+            tilstand: "kritisk truet"
         },
 
         {
@@ -185,13 +178,13 @@
             bilde: "tiger.jpg",
             populasjon: 3890,
             lokasjon: "Tropisk regnskog, savanner, temperert skog og steinete områder",
-            tilstand: "sterkt truet",
-        },
+            tilstand: "sterkt truet"
+        }
 
         ];
 
         function visDyrene() {
-            for(var dyr of dyrene) {
+            for(var dyr of dyrene) { //konkatenering med template string
                 main.innerHTML += `<article id="${dyr.id}" onclick="visMer('${dyr.id}', '${dyr.navn}')"><img src="bilder/${dyr.bilde}">
 
                                     <p class="info" style="display:none">Dette dyret er mest kjent som ${dyr.navn},
@@ -201,13 +194,15 @@
                                     <p class="info2" style="display: block">Hvilket dyr er dette?</p>
                                     </article>`;
             }
+
+            console.log(dyrene[0].navn); //vise dotnotasjon
         }
 
         visDyrene();
 
 
         function visMer(dyreid, navn) {
-            let info = document.querySelector(`#${dyreid} .info`); //henter ide'en til article og endre styl på info
+            let info = document.querySelector(`#${dyreid} .info`); //henter id'ene til article og endrer style på info
             let info2 = document.querySelector(`#${dyreid} .info2`);
 
             if (info.style.display === "none") {
@@ -223,7 +218,6 @@
             }
 
         }
-
 
     </script>
 

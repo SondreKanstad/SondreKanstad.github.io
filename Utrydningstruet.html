@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Utryddningstruet</title>
+    <link rel="stylesheet" href="foundation-float.min.css">
+    <style>
+
+        * {
+            font-family: "Comic Sans MS";
+        }
+
+        header {
+            position: relative;
+            left: 0;
+            top: 0;
+            width: 100%;
+            color: white;
+            text-align: center;
+            background-color: #393A3A;
+            padding-bottom: 10px;
+        }
+
+        h1 {
+            font-family: "Comic Sans MS";
+        }
+
+        h2 {
+            font-family: "Comic Sans MS";
+            font-size: 20px;
+            text-align: center;
+            padding: 10px;
+        }
+
+        h3 {
+            font-family: "Comic Sans MS";
+            font-size: 15px;
+            text-align: center;
+        }
+
+        body {
+            background-color: papayawhip;
+        }
+
+        .footer {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            background-color: #0c4d78;
+            color: white;
+            text-align: center;
+            padding: 5px;
+        }
+
+        #knapper a {
+            font-size: 20px;
+            background-color: #0C4D78;
+            color: white;
+            padding: 12px;
+            width: 200px;
+        }
+
+        .knapperMain a {
+            font-size: 20px;
+            padding: 12px;
+            width: 200px;
+
+        }
+
+        nav {
+            text-align: center;
+        }
+
+        .knapperMain #btnKritiskTruet {
+            background-color: red;
+        }
+
+        .knapperMain #btnTruet {
+            background-color: orange;
+        }
+
+        .knapperMain #btnIkkeTruet {
+            background-color: green;
+        }
+
+        .knapperMain #btnvisAlle {
+             background-color: #0C4D78;
+        }
+
+        #zoo {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+        }
+
+        article {
+            padding: 10px;
+            margin-bottom: 15px;
+            width: 100%;
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+    <h1>Liste over utryddningstruete dyr</h1>
+
+        <nav id="knapper">
+            <a class="button" href="Hjem.html">Hjem</a>
+            <a class="button" href="Dyrehagen.html">Dyrehagen</a>
+            <a class="button" href="Quiz.html">Quiz</a>
+            <a class="button" href="Utrydningstruet.html">Utrydningstruet</a>
+        </nav>
+    </header>
+
+    <h2>Trykk på knappene for å se dyrene kategorisert</h2>
+
+    <nav class="knapperMain">
+        <a class="button" id="btnKritiskTruet">Kritisk truet</a>
+        <a class="button" id="btnTruet">Truet</a>
+        <a class="button" id="btnIkkeTruet">Ikke truet</a>
+        <a class="button" id="btnvisAlle">Vis Alle</a>
+    </nav>
+
+    <div id="zoo">
+
+        </div>
+
+    <div class="footer">All fakta er hentet fra WWF sine offisielle sider henvist her https://www.wwf.no/</div>
+
+    <script>
+
+        var btnKritiskTruet = document.getElementById("btnKritiskTruet");
+        var btnTruet = document.getElementById("btnTruet");
+        var btnIkkeTruet = document.getElementById("btnIkkeTruet");
+        var btnvisAlle = document.getElementById("btnvisAlle");
+        var zoo = document.getElementById("zoo");
+
+
+
+        var dyrene = [
+            {id: "dyr1", navn: "Spissneshorn", status: "Kritisk truet", bestand: 5000, bilde: "spissneshorn.jpg"},
+            {id: "dyr2", navn: "Blåhval", status: "Truet", bestand: 25000, bilde: "blåhval.jpg"},
+            {id: "dyr3", navn: "Fjellrev", status: "Ikke truet", bestand: 200000, bilde: "fjellrev.jpg"},
+            {id: "dyr4", navn: "Sjimpanse", status: "Truet", bestand: 299700, bilde: "sjimpanse.jpg"},
+            {id: "dyr5", navn: "Gråhval", status: "Ikke truet", bestand: 150, bilde: "gråhval.jpg"},
+            {id: "dyr6", navn: "Fjellgorilla", status: "Kritisk truet", bestand: 880, bilde: "gorilla.jpg"},
+            {id: "dyr7", navn: "Orangutang", status: "Kritisk truet", bestand: 104000, bilde: "orangutang.jpg"},
+            {id: "dyr8", navn: "Rød panda", status: "Truet", bestand: 10000, bilde: "rødpanda.jpg"},
+            {id: "dyr9", navn: "Gaffelbukk", status: "Ikke truet", bestand: 1000000, bilde: "gaffelbukk.jpg"},
+            {id: "dyr10", navn: "Californianise", status: "Kritisk truet", bestand: 30, bilde: "californianise.png"},
+            {id: "dyr11", navn: "Amerikansk alligator", status: "Ikke truet", bestand: 5000000, bilde: "alligator.jpg"},
+            {id: "dyr12", navn: "Tiger", status: "Truet", bestand: 3890, bilde: "tiger.jpg"}
+        ];
+
+
+        function visDyrene(dyrene) {
+
+                for(var dyr of dyrene) {
+                    zoo.innerHTML += `
+                               <article id="${dyr.id}">
+                                    <img src="bilder/${dyr.bilde}" style="width:100%">
+                                    <p>${dyr.navn} <b>${dyr.status}</b></p>
+                                    <p>${dyr.bestand} individer</p>
+                              </article>
+                        `;
+                }
+            }
+
+            visDyrene(dyrene);
+
+
+
+            function visKritiskTruet() {
+
+                zoo.innerHTML = "";
+
+                var kritisktruet = dyrene.filter(dyr => dyr.status === "Kritisk truet");
+
+                console.log(kritisktruet);
+
+                visDyrene(kritisktruet);
+
+                if (visKritiskTruet = true) {
+                    zoo.style.color = "red";
+                }
+            }
+
+            function visTruet() {
+
+                    zoo.innerHTML = "";
+
+                    var truet = dyrene.filter( dyr => dyr.status === "Truet" );
+
+                    console.log(truet);
+
+                    visDyrene(truet);
+
+                if(visTruet = true) {
+                    zoo.style.color = "orange";
+                    }
+                }
+
+
+            function visIkkeTruet() {
+
+                    zoo.innerHTML = "";
+
+                    var ikketruet = dyrene.filter( dyr => dyr.status === "Ikke truet" );
+
+                    console.log(ikketruet);
+
+                    visDyrene(ikketruet);
+
+                    if(visIkkeTruet = true) {
+                         zoo.style.color = "green";
+                     }
+                }
+
+            function visAlle() {
+
+                    zoo.innerHTML = "";
+
+                    visDyrene(dyrene);
+
+                     if(visAlle = true) {
+                          zoo.style.color = "black";
+                      }
+                }
+
+
+                btnKritiskTruet.onclick = visKritiskTruet;
+                btnTruet.onclick = visTruet;
+                btnIkkeTruet.onclick = visIkkeTruet;
+                btnvisAlle.onclick = visAlle;
+
+    </script>
+
+</body>
+</html>
